@@ -25,7 +25,7 @@
     * [设计模式](framework/modeldesign.md)
 * [6.分布式](distribute/README.md)
     * [一致性](distribute/consistance/README.md)
-        * [Zookeeper](distribute/zookeeper.md)
+        * [Zookeeper](distribute/consistance/zookeeper.md)
     * [锁](distribute/lock/README.md)
     * [负载均衡](distribute/loadbalance/README.md)
         * [Nginx](distribute/loadbalance/nginx.md)
