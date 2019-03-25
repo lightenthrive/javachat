@@ -1,5 +1,5 @@
 {
-    "title": "Java Interview",
+    "title": "JavaChat",
     "author": "amlgx",
     "description": "java chat",
     "language": "zh-hans",
@@ -12,7 +12,7 @@
     },
     "links": {
         "sidebar": {
-            "gitbook": "https://i.amlgx.com/gitbook.html"
+            //"amlgx": "https://i.amlgx.com/"
         }
     },
     "plugins": [
@@ -28,12 +28,12 @@
     ],
     "pluginsConfig": {
         "github": {
-            "url": "https://github.com/amlgx/java_interview"
+            "url": "https://github.com/amlgx/javachat"
         },
         "github-buttons": {
             "buttons": [{
-                "user": "Blankj",
-                "repo": "glory",
+                "user": "amlgx",
+                "repo": "javachat",
                 "type": "star",
                 "size": "small",
                 "count": true
