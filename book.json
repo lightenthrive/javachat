@@ -7,14 +7,6 @@
     "styles": {
         "website": "./styles/website.css"
     },
-    "structure": {
-        "readme": "README.md"
-    },
-    "links": {
-        "sidebar": {
-            "amlgx": "https://i.amlgx.com/"
-        }
-    },
     "plugins": [
         "-sharing",
         "splitter",
