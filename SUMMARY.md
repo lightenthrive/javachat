@@ -1,4 +1,4 @@
-# 高级开发
+## 高级开发
 
 1. [jdk](jdk/README.md)
    * [io](jdk/io.md)
@@ -59,7 +59,7 @@
    * [字符串](algorithm/string.md)
    * [高级算法](algorithm/advanced.md)
 
-# 架构师
+### 架构师
 
 * [优化](optimization/README.md)
   * [系统](optimization/system.md)
