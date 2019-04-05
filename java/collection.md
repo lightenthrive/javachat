@@ -18,6 +18,8 @@ Set接口的实现类有：TreeSet(红黑树), HashSet(哈希), LinkedHashSet(�
 
 继承关系如上图所示。
 
+## Collection 和 Collections 有什么区别？
+
 ## fail-fast 和 fail-safe的区别是什么？
 
 单/多线程环境下，fail-fast机制是：正在遍历的集合被修改，快速失败迭代器抛出ConcurrentModificationException。单线程环境的remove()方法会让expectModcount和modcount 相等，所以不会抛出这个异常。这个异常不能保证并发修改的条件，仅用于检测bug。比如HashMap,HashSet,ArrayList,Vector。
@@ -31,6 +33,8 @@ fail-safe机制是：任何对集合结构的修改都会在一个复制的集�
 ## Arrays和System的sort方法的算法实现是怎么样的？
 
 插入排序+快速排序。
+
+## 怎么确保一个集合不能被修改？
 
 ## 当一个集合被作为参数传递给一个函数时，如何才可以确保函数不能修改它？
 
@@ -47,6 +51,12 @@ Java集合框架提供常用的算法实现，比如排序和搜索。Collection
 ## 我们如何对一组对象进行排序？
 
 如果我们需要对一个对象数组进行排序，我们可以使用Arrays.sort()方法。如果我们需要排序一个对象列表，我们可以使用Collection.sort()方法。两个类都有用于自然排序（使用Comparable）或基于标准的排序（使用Comparator）的重载方法sort()。Collections内部使用数组排序方法，所有它们两者都有相同的性能，只是Collections需要花时间将列表转换为数组。
+
+## 迭代器 Iterator 是什么？
+
+jdk提供的迭代器设计模式的遍历接口，为集合类的遍历提供了统一的外部方法。
+
+## Iterator 和 ListIterator 有什么区别？
 
 ## 如何在遍历时移除Collection的元素？
 
@@ -70,9 +80,17 @@ Java集合框架提供常用的算法实现，比如排序和搜索。Collection
 
 （6）尽可能使用Collections工具类，或者获取只读、同步或空的集合，而非编写自己的实现。它将会提供代码重用性，它有着更好的稳定性和可维护性。
 
-## 集合的常用方法
+## 集合的常用方法有哪些？
 
+## Hashtable的size()方法中明明只有一条语句"return count"，为什么还要做同步？
 
+返回准确的数据需要同步，来保证运行时没有添加删除操作。
+
+翻译成机器码，就不是一条语句了，失去了线程安全性。
+
+## 在 Queue 中 poll()和 remove()有什么区别？
+
+到终点poll()返回空值，remove()抛出异常。
 
 # 并发集合
 
@@ -85,6 +103,12 @@ List接口的并发实现类有：CopyOnWriteList
 Queue接口的并发实现类是阻塞队列：ArrayBlockingQueue(数组实现的有界队列), LinkedBlockingQueue(有界队列，但默认最大长度为最大整数), PriorityBlockingQueue(堆实现的支持优先级排序的无界队列), DelayQueue(延时获取元素的无界阻塞队列), SynchronousQueue(没有容量，现场交接), LinkedTransferQueue(链表组成的无界阻塞队列，有供求则优先), LinkedBlockingDeque(实现原理为Condition).
 
 Set接口的并发实现类有：CopyOnWriteSet, ConcurrentSkipListSet
+
+
+
+## ConcurrentLinkedQueue的原理是什么？
+
+ConcurrentLinkedQueue使用非阻塞方法实现线程安全。入队时经过不超过HOPS次循环定位到实际尾节点，否则重新进入循环，减少与cas更新线程的竞争。然后将入队节点cas设置为实际尾节点，超过HOPS次循环后，将入队节点cas更新为tail尾节点，这样减少更新次数。出队时首先获取头节点的元素，非空则经过HOPS次循环后，cas设置头节点的元素引用为空，并返回元素值。否则说明已经出队，重新获取next节点，直到next节点为空，将最后的节点设置为头节点。
 
 # Map
 
@@ -110,9 +134,17 @@ HashMap的默认初始容量是16, 键值对数/数组位点的比例低于扩�
 
 其他解决碰撞冲突的方法还有开放定址法，具体包括线性探查法、二次探查法、双重散列法。
 
+## HashMap多线程扩容时会出现死循环的原因?
+
+数组扩容时，先复制一段新的数组，哈希值多取一位，得到新的哈希值。遍历原链表，根据计算的新哈希值分配元素位置。头元素移动到新的位置，再取消原连接之前，如果添加了与后续节点相同key的值，也分配到了新的位置，并且占据头结点。那么，取值的链表遍历就是先在新位置找到头结点，然后找到原先的头元素，然后发现：后续的元素是与新添加的元素的key相同，
+
 ## 如何决定选用HashMap还是TreeMap？
 
 需要快速插入和查找，用HashMap。需要键的排序，用TreeMap。
+
+## HashSet 的实现原理？
+
+空值的HashMap.
 
 ## LinkedHashMap和PriorityQueue的区别是什么？
 
@@ -157,6 +189,8 @@ ConcurrentHashMap的原理，在jdk1.7的版本中维护了一个默认16的分�
 
 ## ArrayList与Vector的区别是什么？
 
+## ArrayList 和 LinkedList 的区别是什么？
+
 ## 多线程场景下如何使用List？
 
 ArrayList不是线程安全的，可以在加锁的方法内使用。
@@ -198,6 +232,10 @@ removeAll(Collection<?> c) :从此列表中删除指定集合中包含的所有�
 ## Arrays.asList获得的List使用时需要注意什么？
 
 不能删除增加。
+
+## 简述LinkedList的原理
+
+经典的双链表结构，适合随机插入和删除，
 
 ## CopyOnWriteArrayList
 

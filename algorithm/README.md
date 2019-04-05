@@ -6,3 +6,11 @@
 
 ## 10亿个书找前10个最大的
 
+hash算法和二叉树算法什么时候用？
+
+## [拜托，面试别再问我TopK了！！！](https://mp.weixin.qq.com/s/FFsvWXiaZK96PtUg-mmtEw)
+
+
+
+
+
