@@ -25,6 +25,48 @@ Spring JavaConfig是Spring社区的产品，它提供了配置Spring IoC容器�
 - 减少或消除XML配置。基于依赖注入原则的外化配置的好处已被证明。但是，许多开发人员不希望在XML和Java之间来回切换。JavaConfig为开发人员提供了一种纯Java方法来配置与XML配置概念相似的Spring容器。从技术角度来讲，只使用JavaConfig配置类来配置容器是可行的，但实际上很多人认为将JavaConfig与XML混合匹配是理想的。
 - 类型安全和重构友好。JavaConfig提供了一种类型安全的方法来配置Spring容器。由于Java 5.0对泛型的支持，现在可以按类型而不是按名称检索bean，不需要任何强制转换或基于字符串的查找。
 
+## 为什么要用 Spring Boot ？
+
+下面我列几个最常见的三个回答：
+
+**A：Spring Boot 最主要是不用 XML 配置，可以用 Java 来配置 bean，省去了许多配置文件。**
+
+我又问：Spring 本身就可以用 Java 配置代替 XML 配置，和 Spring Boot 有什么关系呢？
+
+然后对方就吱吱唔唔了……
+
+**B：Spring Boot 我们用来做 Spring Cloud 微服务。**
+
+我又问：微服务和 Spring Boot 有什么关系？不用 Spring Boot 行不行？
+
+然后对方就吱吱唔唔了……
+
+**C：Spring Boot 可以打 jar 包部署，内部集成了Tomcat。**
+
+这个确实是 Spring Boot 的特色，但是我还是觉得没有答到关键点上。
+
+然后我继续问，如果不考虑打 jar 包部署呢，然后就没然后了……
+
+为什么我们要用 Spring Boot，显然上面三个求职者没有答到关键点上，Spring Boot 最重要的功能是：**自动配置**。
+
+**为什么说是自动配置？**
+
+Spring Boot 的开启注解是：@SpringBootApplication，其实它就是由下面三个注解组成的：
+
+- @Configuration
+- @ComponentScan
+- @EnableAutoConfiguration
+
+上面三个注解，前面两个都是 Spring 自带的，和 Spring Boot 无关，所以说上面的回答的不是在点上。
+
+所以说 Spring Boot 最最核心的就是这个 `@EnableAutoConfiguration` 注解了，它能根据类路径下的 jar 包和配置动态加载配置和注入bean。
+
+比如我在 lib 下放一个 druid 连接池的 jar 包，然后在 application.yml 文件配置 druid 相关的参数，Spring Boot 就能够自动配置所有我们需要的东西，如果我把 jar 包拿掉或者把参数去掉，那 Spring Boot 就不会自动配置。
+
+这样我们就能把许多功能做成公共的自动配置的启动器（starters），其实 druid 连接池就是这么做的，它提供了针对 Spring Boot 的启动器：druid-spring-boot-starter。
+
+有了这个自动配置的启动器，我们就能非常简单的使用它，
+
 ## Spring Boot中的监视器是什么？
 
 Spring boot actuator是spring启动框架中的重要功能之一。Spring boot监视器可帮助您访问生产环境中正在运行的应用程序的当前状态。有几个指标必须在生产环境中进行检查和监控。即使一些外部应用程序可能正在使用这些服务来向相关人员触发警报消息。监视器模块公开了一组可直接作为HTTP URL访问的REST端点来检查状态。
