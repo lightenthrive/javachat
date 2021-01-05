@@ -1,7 +1,3 @@
-_book
 node_modules
-*.orig
-*_BACKUP_*
-*_BASE_*
-*_LOCAL_*
-*_REMOTE_*
+db.json
+docs
