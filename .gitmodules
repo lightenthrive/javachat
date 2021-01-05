@@ -1,0 +1,3 @@
+[submodule "themes/ayer"]
+	path = themes/ayer
+	url = https://github.com/amlgx/hexo-theme-ayer
