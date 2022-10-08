@@ -1,0 +1,30 @@
+lang: zh-CN
+title: Mind & Life
+email: gxli2988@gmail.com
+description: "less mind conflict, better human life."
+
+url: http://gxlist.github.io
+author:
+  name: 光武中兴
+  picture: 
+github_username: gxlist
+name: lighten.lee
+logo: favicon.ico
+timezone: Asia/Shanghai
+
+# Build settings
+theme: jekyll-theme-cayman
+markdown: kramdown
+highlighter: rouge
+
+plugins: 
+#  - jekyll-sitemap
+  - jekyll-paginate
+
+# Pagination - https://jekyllrb.com/docs/pagination/
+paginate: 10
+paginate_path: /page:num/
+
+# Exclude from processing.
+exclude: 
+  - _draft
